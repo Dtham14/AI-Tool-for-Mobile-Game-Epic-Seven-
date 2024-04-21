@@ -1,0 +1,104 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0C0D0F;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+#dropdowns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.dropdown-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0.25;
+    /* Equal width columns */
+}
+
+.portraitsMy {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #200f9a;
+    margin-bottom: 10px;
+}
+
+.portraitsEn {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #e60e0e;
+    margin-bottom: 10px;
+}
+
+.PrePor {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #808080;
+    margin-left: 40px;
+    margin-right: 30px;
+}
+
+.RecPor {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #808080;
+    margin-left: 40px;
+    margin-right: 30px;
+}
+
+img.assest {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+.selectMy {
+    width: 200px;
+    margin: 40px;
+    border: 2px solid #200f9a;
+    padding: 10px;
+    font-size: 16px;
+    font-family: fantasy;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.innerCol {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.selectEn {
+    width: 200px;
+    margin: 40px;
+    border: 2px solid #e60e0e;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+input[type="radio"] {
+    margin-top: 40px;
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+.labelOp{
+    margin-bottom: 40px;
+    margin-left: 10px; 
+    margin-right: 10px;
+}

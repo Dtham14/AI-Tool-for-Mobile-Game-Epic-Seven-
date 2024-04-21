@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>E7 Draft Assister</h1>
+    <div id="dropdowns">
+        <div class="dropdown-column">
+
+            {% for i in range(1, 6) %}
+                <input type="radio" id="myPost{{i}}" name="optionsMy" value="optionMy">
+                <label class="labelOp" for="optionMy">Ban</label>
+                </br></br></br></br></br>
+            {% endfor %}
+        </div>
+        <div class="dropdown-column">
+            
+                {% for i in range(1, 6) %}
+                    <img class="portraitsMy" id="myImg{{ i }}" src="">
+                {% endfor %}
+
+        </div>
+        <div class="dropdown-column">
+
+            <div class="dropdown-menu">
+                {% for i in range(1, 6) %}
+                    <form>
+                        <select class="selectMy" id="myPick{{ i }}" name="myPick{{ i }}">
+                            <option value="">Pick {{i}} </option>
+                            {% for option in hero_list %}
+                                <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown-column">
+            
+            <div class="innerCol">
+                <img class="RecPor" id="myRecPor1" src="">
+                <img class="RecPor" id="myRecPor2" src="">
+            </div>
+            
+            <p>{{draft_response_vals}}</p>
+      
+            <img class="asset" src="{{ url_for('get_vs') }}" alt="Example Image">
+
+            <div class="innerCol">
+                <img class="PrePor" id="myPrePor1" src="">
+                <img class="PrePor" id="myPrePor2" src="">
+                <img class="PrePor" id="enPrePor1" src="">
+                <img class="PrePor" id="enPrePor2" src="">
+            </div>
+
+
+            <div class="innerCol">
+            <form>
+                <select class="myPre1" id="myPre1{{ i }}" name="en{{ i }}">
+                    <option value="">My Pre Ban 1</option>
+                    {% for option in hero_list %}
+                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+
+            <form>
+                <select class="myPre2" id="myPre2{{ i }}" name="en{{ i }}">
+                    <option value="">My Pre Ban 2</option>
+                    {% for option in hero_list %}
+                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+
+            <form>
+                <select class="enPre1" id="enPre1{{ i }}" name="en{{ i }}">
+                    <option value="">Enemy Pre Ban 1 </option>
+                    {% for option in hero_list %}
+                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            <form>
+                <select class="enPre2" id="enPre2{{ i }}" name="en{{ i }}">
+                    <option value="">Enemy Pre Ban 2 </option>
+                    {% for option in hero_list %}
+                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+
+            </br>
+            <button type="submit" id="winButton">Update Draft</button>
+            </br>
+            </br>
+            </br>
+            <h3 id ="winText"></h3>
+            <button type="submit" id="winProb">Get Win Prediction</button>
+        </br>
+           
+    </br>
+        </div>
+
+        
+        <div class="dropdown-column">
+            <div class="dropdown-menu">
+                {% for i in range(1, 6) %}
+                    <form>
+                        <select class="selectEn" id="enPick{{ i }}" name="enPick{{ i }}">
+                            <option value="">Pick {{i}}</option>
+                            {% for option in hero_list %}
+                                <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown-column">
+            
+            {% for i in range(1, 6) %}
+                <img class="portraitsEn" id="enImg{{ i }}" src="">
+            {% endfor %}
+        </div>
+        <div class="dropdown-column">
+
+            {% for i in range(1, 6) %}
+                <input type="radio" id="enPost{{i}}" name="optionsEn" value="optionEn">
+                <label  class="labelOp" for="optionEn">Ban</label>
+                </br></br></br></br></br>
+            {% endfor %}
+    </div>
+    </div>
+
+    <script>
+
+        for (let i = 1; i <= 5; i++) {
+            let dropdown = document.getElementById('myPick' + i);
+            let image = document.getElementById('myImg' + i);
+
+            dropdown.addEventListener('change', function(event) {
+                image.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png";
+            });
+        }
+
+        for (let i = 1; i <= 5; i++) {
+            let dropdown = document.getElementById('enPick' + i);
+            let image = document.getElementById('enImg' + i);
+
+            dropdown.addEventListener('change', function(event) {
+                image.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png";
+            });
+        }
+
+        for (let i = 1; i <= 2; i++) {
+            let dropdown = document.getElementById('myPre' + i);
+            let image = document.getElementById('myPrePor' + i); 
+
+            dropdown.addEventListener('change', function(event) {
+                image.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png";
+            });
+        }
+
+        for (let i = 1; i <= 2; i++) {
+            let dropdown = document.getElementById('enPre' + i);
+            let image = document.getElementById('enPrePor' + i); 
+
+            dropdown.addEventListener('change', function(event) {
+                image.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png";
+            });
+        }
+        
+        // Recommendations 
+
+
+        $(document).ready(function(){
+            $('#winButton').click(function(){
+                let selectedValues = {};
+                for (let i = 1; i <= 5; i++) {
+                    selectedValues['enPick'+i] = (document.getElementById('enPick'+i).value)
+                    selectedValues['myPick'+i] = (document.getElementById('myPick'+i).value)
+                }
+
+                for (let i = 1; i <= 2; i++) {
+                    selectedValues['myPre'+i] = (document.getElementById('myPre'+i).value)
+                    selectedValues['enPre'+i] = (document.getElementById('enPre'+i).value)
+                }
+                
+                let rec1 = document.getElementById("myRecPor1")
+                let rec2 = document.getElementById("myRecPor2")
+                $.ajax({
+                    url: '/updateDraftPick',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(selectedValues),
+                    success: function(response){
+                            rec1.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + response[0] + "_s.png";
+                            rec2.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + response[1] + "_s.png";
+                        
+                    }
+                });
+            });
+        });
+
+
+        $(document).ready(function(){
+            $('#winProb').click(function(){
+
+                let selectedValues = {};
+                for (let i = 1; i <= 5; i++) {
+                    selectedValues['enPick'+i] = (document.getElementById('enPick'+i).value)
+                    selectedValues['myPick'+i] = (document.getElementById('myPick'+i).value)
+                }
+
+                for (let i = 1; i <= 2; i++) {
+                    selectedValues['myPre'+i] = (document.getElementById('myPre'+i).value)
+                    selectedValues['enPre'+i] = (document.getElementById('enPre'+i).value)
+                }
+
+                for (let i = 1; i <= 5; i++) {
+                    if (document.getElementById('myPost'+i).checked) {
+                        selectedValues['myPost'] = (document.getElementById('myPick'+i).value)
+                    }
+                }
+                 
+                for (let i = 1; i <= 5; i++) {
+                    if (document.getElementById('enPost'+i).checked) {
+                        selectedValues['enPost'] = (document.getElementById('enPick'+i).value)
+                    }
+                }    
+                let winText = document.getElementById('winText');
+                $.ajax({
+                    url: '/calculateWin',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(selectedValues),
+                    success: function(response){
+                        console.log(response.res)
+                        let isWin = response.res
+                        if(isWin == 1){
+                            winText.innerText = "Loss"
+                        }else{
+                            winText.innerText = "Win" 
+                        }
+                        
+                        
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
