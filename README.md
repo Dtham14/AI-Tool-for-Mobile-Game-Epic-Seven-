@@ -2,7 +2,6 @@
 
 ## Description
 
-This project was created for an Artifical Intellegence class at Simon Fraser University (CMPT 419).  It uses match data collected from the official Epic Seven match history API to create a dataset of matches.  Using the dataset, users are able to 
-be provided suggestions on which heroes to pick in their draft.  When the draft is filled out, it will be fed into a linear regression model to predict an outcome whether the user's draft or the opponent's draft will win or lose.  
+This project was created for an Artificial Intelligence class at Simon Fraser University (CMPT 419).  It is a web tool to help a player base of millions who play the mobile game, Epic Seven, to predict the outcome of player versus-player matches using data-centric and machine-learning techniques.
 
 
