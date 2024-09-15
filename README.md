@@ -1,4 +1,4 @@
-# Draft Assister for Epic Seven
+# AI Tool for Mobile Game: Epic Seven 
 
 ## Description
 
